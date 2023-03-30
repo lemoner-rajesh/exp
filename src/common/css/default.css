@@ -47,7 +47,7 @@ body {
     position: relative;
     font-size: 19px;
     overflow-x: hidden;  
-    background-color: green;  
+    background-color: rgb(107, 0, 128);  
 }
 
 .nav{
