@@ -25,17 +25,17 @@ module.exports = {
              */
             resolve: `gatsby-source-wordpress`,
             options: {
-                url: `https://exp.aljhealth.com/graphql`,
-                headers:{
-                    Authorization:"Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvc29sdXRpb25jbXMuYWxqaGVhbHRoLmNvbVwvZW5cLyIsImlhdCI6MTY3NDU1MjU2NywibmJmIjoxNjc0NTUyNTY3LCJleHAiOjE2NzQ1NTI4NjcsImRhdGEiOnsidXNlciI6eyJpZCI6IjgifX19.GCNNHjfaYd-rXohKpYiY1N46ES1GRsmd-NMAI06Oh1Q"
-                },
-                auth: {
-                    htaccess: {
-                        username: "aljadmin",
-                        password: "aljadmin",
-                    }
-                },
-                // url: `http://gatsbycms.local/graphql`,  
+                // url: `https://exp.aljhealth.com/graphql`,
+                // headers:{
+                //     Authorization:"Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvc29sdXRpb25jbXMuYWxqaGVhbHRoLmNvbVwvZW5cLyIsImlhdCI6MTY3NDU1MjU2NywibmJmIjoxNjc0NTUyNTY3LCJleHAiOjE2NzQ1NTI4NjcsImRhdGEiOnsidXNlciI6eyJpZCI6IjgifX19.GCNNHjfaYd-rXohKpYiY1N46ES1GRsmd-NMAI06Oh1Q"
+                // },
+                // auth: {
+                //     htaccess: {
+                //         username: "aljadmin",
+                //         password: "aljadmin",
+                //     }
+                // },
+                url: `http://54.174.207.47/graphql`,  
                 verbose: true,    
                 production: {
                     allow404Images: true,
