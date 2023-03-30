@@ -15,22 +15,81 @@ module.exports = {
    */
   plugins: [
     {
-      /**
-       * First up is the WordPress source plugin that connects Gatsby
-       * to your WordPress site.
-       *
-       * visit the plugin docs to learn more
-       * https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-source-wordpress/README.md
-       *
-       */
-      resolve: `gatsby-source-wordpress`,
-      options: {
-        // the only required plugin option for WordPress is the GraphQL url.
-        url:
-          process.env.WPGRAPHQL_URL ||
-          `https://wpgatsbydemo.wpengine.com/graphql`,
-      },
-    },
+            /**
+             * First up is the WordPress source plugin that connects Gatsby
+             * to your WordPress site.
+             *
+             * visit the plugin docs to learn more
+             * https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-source-wordpress/README.md
+             *
+             */
+            resolve: `gatsby-source-wordpress`,
+            options: {
+                url: `https://exp.aljhealth.com/graphql`,
+                headers:{
+                    Authorization:"Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvc29sdXRpb25jbXMuYWxqaGVhbHRoLmNvbVwvZW5cLyIsImlhdCI6MTY3NDU1MjU2NywibmJmIjoxNjc0NTUyNTY3LCJleHAiOjE2NzQ1NTI4NjcsImRhdGEiOnsidXNlciI6eyJpZCI6IjgifX19.GCNNHjfaYd-rXohKpYiY1N46ES1GRsmd-NMAI06Oh1Q"
+                },
+                auth: {
+                    htaccess: {
+                        username: "aljadmin",
+                        password: "aljadmin",
+                    }
+                },
+                // url: `http://gatsbycms.local/graphql`,  
+                verbose: true,    
+                production: {
+                    allow404Images: true,
+                    allow401Images: true,
+                },
+                
+                html: {
+                    useGatsbyImage: true,
+                    generateWebpImages: true,
+                    placeholderType:'none',
+                    createStaticFiles: true,
+
+                },
+                debug: {
+                    // preview: true,
+                    // timeBuildSteps: true,
+                    // graphql: {
+                    //         showQueryVarsOnError: true,
+                    //     showQueryOnError: true, 
+                    //     //writeQueriesToDisk: true,
+                    // },
+                  },
+                  
+            },
+            
+            // includedRoutes: [
+            //     '/*/*/categories',
+            //     '/*/*/posts',
+            //     '/*/*/pages',
+            //     '/*/*/media',
+            //     '/*/*/tags',
+            //     '/*/*/taxonomies',
+            //     '/*/*/users',
+            //     '/*/*/ourpeople',
+            //     '/*/*/menus'
+            // ],
+        },
+    // {
+    //   /**
+    //    * First up is the WordPress source plugin that connects Gatsby
+    //    * to your WordPress site.
+    //    *
+    //    * visit the plugin docs to learn more
+    //    * https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-source-wordpress/README.md
+    //    *
+    //    */
+    //   resolve: `gatsby-source-wordpress`,
+    //   options: {
+    //     // the only required plugin option for WordPress is the GraphQL url.
+    //     url:
+    //       process.env.WPGRAPHQL_URL ||
+    //       `https://wpgatsbydemo.wpengine.com/graphql`,
+    //   },
+    // },
 
     /**
      * We need this plugin so that it adds the "File.publicURL" to our site
@@ -70,6 +129,19 @@ module.exports = {
 
     // See https://www.gatsbyjs.com/plugins/gatsby-plugin-react-helmet/?=gatsby-plugin-react-helmet
     `gatsby-plugin-react-helmet`,
+    // {
+    //   // resolve: 'gatsby-plugin-copy-files-enhanced',
+    //   // options: {
+    //   //   source: `${__dirname}/src/common`,
+    //   //   destination: '/static/common',
+    //   //   purge: true,
+    //   // },
+    //   resolve: `gatsby-plugin-copy`,
+    //   options: {
+    //     src: `${__dirname}/src/common`,
+    //     dest: `${__dirname}/static/common`,
+    //   },
+    // },
 
     /**
      * this (optional) plugin enables Progressive Web App + Offline functionality

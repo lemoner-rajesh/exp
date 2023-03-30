@@ -27,6 +27,8 @@
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "dependencies": {
+    "@webdeveducation/wp-block-tools": "^1.1.21",
+    "fs-extra": "^11.1.1",
     "gatsby": "~5.3.2",
     "gatsby-plugin-image": "^3.3.2",
     "gatsby-plugin-manifest": "^5.3.1",
