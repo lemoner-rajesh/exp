@@ -46,7 +46,8 @@ body {
     font-weight: 200;
     position: relative;
     font-size: 19px;
-    overflow-x: hidden;    
+    overflow-x: hidden;  
+    background-color: green;  
 }
 
 .nav{
