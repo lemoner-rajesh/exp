@@ -1,6 +1,7 @@
 import React from "react"
 import { Link, useStaticQuery, graphql } from "gatsby"
 import parse from "html-react-parser"
+import Logo from "../common/images/logo.png"
 
 const Layout = ({ isHomePage, children }) => {
   const {
@@ -24,7 +25,7 @@ const Layout = ({ isHomePage, children }) => {
    <div>
    
    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a className="navbar-brand" href="#">Navbar</a>
+  <a className="navbar-brand" href="#"><img src={Logo} /></a>
   <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span className="navbar-toggler-icon"></span>
   </button>
