@@ -74,3 +74,15 @@ footer{
 footer a{
     color: #fff;
 }
+
+.sliderWrapper{
+    text-align: center;
+    background-color: #117a8b;
+    padding: 35px 35px 15px 35px;
+    margin: 25px 0;
+}
+
+.slick-slide img{
+ border: 5px solid #fff;  
+ width: 100%; 
+}
