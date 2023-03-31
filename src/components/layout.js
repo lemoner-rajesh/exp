@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react"
 import { Link, useStaticQuery, graphql, Script } from "gatsby"
 import parse from "html-react-parser"
 import Logo from "../common/images/logo.png"
-import loadScripts from 'load-scripts';
+// import loadScripts from 'load-scripts';
 
 const Layout = ({ isHomePage, children }) => {
 
