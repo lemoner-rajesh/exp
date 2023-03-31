@@ -1,4 +1,4 @@
-
+$(document).ready(function(){
 $('.slider').slick({
     slidesToShow: 3,
   slidesToScroll: 1,
@@ -7,6 +7,6 @@ $('.slider').slick({
   dots:true,
   infinite: true,
   });
-
+});
 
   
