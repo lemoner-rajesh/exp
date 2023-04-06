@@ -166,6 +166,8 @@
 // }
 
 const path = require(`path`)
+const { assignIds } = require('@webdeveducation/wp-block-tools');
+
 // const fs = require('fs');
 const fs = require('fs');
 const fse = require("fs-extra");
@@ -192,21 +194,24 @@ exports.createPages = async ({ actions, graphql }) => {
   const {createPage} = actions
   const {data} = await graphql(`
   query AllPagesQuery {
-
-    allWpPage {
+    wp {
+      themeStylesheet
+    }
+    allWpPressrelease {
           nodes{
             id
           databaseId
           uri
           title
           content
+          blocks
         }
       }
     }
   `);
-  // try{
-  //     fs.writeFileSync("./public/themeStylesheet.css",data.wp.themeStylesheet)        
-  // }catch(e){}
+  try{
+      fs.writeFileSync("./public/themeStylesheet.css",data.wp.themeStylesheet)        
+  }catch(e){}
 
   //   try{
   //     fs.writeFileSync("/static/wpmain.css","./src/common/css/default.css")        
@@ -224,16 +229,18 @@ exports.createPages = async ({ actions, graphql }) => {
   // });
   
 
-  for(let i = 0; i < data.allWpPage.nodes.length; i++){
-      const page = data.allWpPage.nodes[i];
-      // let blocks = page.blocks;
-      // blocks = assignIds(blocks)
+  for(let i = 0; i < data.allWpPressrelease.nodes.length; i++){
+      const page = data.allWpPressrelease.nodes[i];
+      let blocks = page.blocks;
+      blocks = assignIds(blocks)
       createPage({
           path:page.uri,
           component:pageTemplate,
           context:{
             id: page.id,
-            content:page.content
+            content:page.content,
+            blocks
+
           }
       })
   }
