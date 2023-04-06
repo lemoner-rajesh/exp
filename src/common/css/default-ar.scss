@@ -1,7 +1,9 @@
 body.arabic{
     // font-family:Luma;
-    font-family: Luma, Karbon;    
+    font-family: Luma, Karbon !important;    
     font-weight: 400;
+    direction: rtl;
+    text-align: right;
 }
 
 .arabic{

@@ -15,9 +15,11 @@ import "typeface-merriweather"
 import "./src/common/css/bootstrap.min.css";
 // import "./src/common/css/style.css";
 // import "./src/common/css/slick-theme.css";
+
 import "./src/common/css/slick.css";
 import "./src/common/css/default.css";
 import "./src/common/css/media.css";
+import "./src/common/css/default-ar.scss";
 
 import "./public/themeStylesheet.css"
 import '@webdeveducation/wp-block-tools/dist/css/style.css';

@@ -42,13 +42,13 @@ module.exports = {
                     allow401Images: true,
                 },
                 
-                // html: {
-                //     useGatsbyImage: false,
-                //     generateWebpImages: flase,
-                //     placeholderType:'none',
-                //     createStaticFiles: true,
+                html: {
+                    useGatsbyImage: true,
+                    generateWebpImages: true,
+                    placeholderType:'none',
+                    createStaticFiles: true,
 
-                // },
+                },
                 debug: {
                     // preview: true,
                     // timeBuildSteps: true,

@@ -12,14 +12,16 @@ const Page = (props) => {
 
     console.log("currentPage",currentPage)
   return (
-    <Layout>
+    <Layout
+    lang={currentPage.locale.id}
+    >
       <br/>
       <br/>
       <br/>
       <br/>
       <br/>
       <br/>
-      <div className='container'>
+      <div className=''>
         <div className='row justify-content-between'>      
         <div className='col-md-8'>
         {/* <div dangerouslySetInnerHTML={{__html:currentPage.content}} /> */}
@@ -31,18 +33,12 @@ const Page = (props) => {
        allBlocks={currentPage.blocks}
        key={currentPage.id}
        renderComponent={(block) => {
-        // console.log("render component",block)
         switch(block.name){
           case "core/image":{
-            return (<div key={block.id} style={getStyles(block)} className={getClasses(block)}>
-              {/* <BlockRenderer blocks={block.innerBlocks} /> */}
-                
-            
-                {/* <img src={block.attributes.url} width={block.attributes.width}  height={block.attributes.height}/> */}
-                {/* dynamicContent */}
-                {/* <BlockRenderer blocks={block.originalContent} /> */}
-                <div  dangerouslySetInnerHTML={{__html:block.originalContent}} />
+            return (<div key={block.id} style={getStyles(block)} className={getClasses(block)}>    
+                <div  style={{maxWidth:block.attributes.width}}  dangerouslySetInnerHTML={{__html:block.originalContent}} />
               {console.log("innerblocks", block)}
+              <img src={block.attributes.url} />
             </div>)
           }
         }
@@ -50,9 +46,17 @@ const Page = (props) => {
        
        />  
 
+
         </div>
         <div className='col-md-3'>
-        <div class="rtbx for-inq"><p>For press inquiries <a href="mailto:inquiries@jameelhealth.com">click here</a>, or call +971 4 448 0906 (GMT +4 hours UAE). For public inquiries <a href="mailto:press@jameelhealth.com"> click here.</a></p></div>
+
+          {currentPage.locale.id === "ar"?
+          <div class="rtbx for-inq"><p>للاستفسارات الصحفية، انقر هنا، أو اتصل على 0906 448 4 971+ (توقيت الإمارات يسبق توقيت غرينتش بمقدر أربع ساعات). للاستفسارات العامة انقر هنا.</p></div>
+          :<div class="rtbx for-inq"><p>For press inquiries <a href="mailto:inquiries@jameelhealth.com">click here</a>, or call +971 4 448 0906 (GMT +4 hours UAE). For public inquiries <a href="mailto:press@jameelhealth.com"> click here.</a></p></div>
+        }
+        
+        
+
         </div>
         </div>
       </div>
@@ -74,6 +78,10 @@ export const homePageQueryPage = graphql`
       content      
       id 
       blocks
+      locale {
+        id
+      }
+
     }
     wpMediaItem {
       gatsbyImage(width: 1000)
