@@ -3860,7 +3860,7 @@ body .is-layout-constrained > .alignleft{
   width: 100%;
   height: 100%;
 }
-
+/* 
 .wp-block-image.alignright{
   float: right;
   margin-inline-start: 2em;
@@ -3882,4 +3882,4 @@ margin-inline-end:  2em;
   margin-left: auto !important;
   margin-right: auto !important;
  }
-  
+   */
