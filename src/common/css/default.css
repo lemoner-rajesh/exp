@@ -3833,7 +3833,7 @@ padding-bottom: 50px;
 .newsltrcheck input {
   margin-top: 3px;
 }
-
+/* 
 
 .wp-block-image figcaption{
   font-size: 13px;
@@ -3850,7 +3850,7 @@ body .is-layout-constrained > .alignleft{
 
 .wp-block-embed-youtube .wp-block-embed__wrapper{
   position: relative;
-  padding-bottom: 56.25%; /* 16:9 */
+  padding-bottom: 56.25%; 
   height: 0;
 }
 .wp-block-embed-youtube .wp-block-embed__wrapper iframe {
@@ -3882,4 +3882,4 @@ margin-inline-end:  1em;
   margin-left: auto !important;
   margin-right: auto !important;
  }
-   
+    */

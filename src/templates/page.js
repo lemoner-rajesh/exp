@@ -25,7 +25,9 @@ const Page = (props) => {
       <div className=''>
         <div className='row justify-content-between'>      
         <div className='col-md-8'>
-          <p>_______________________</p>
+          {/* <p>_______________________</p> */}
+
+          <div>{parse(currentPage.content)}</div> 
         {/* <div dangerouslySetInnerHTML={{__html:currentPage.content}} />
 
 
@@ -34,7 +36,7 @@ const Page = (props) => {
         {/* <BlockRendererProvider allBlocks={currentPage.blocks}/>  */}
         {/* <BlockRendererProvider allBlocks={props.pageContext.blocks}/> */}
 
-        <BlockRendererProvider 
+        {/* <BlockRendererProvider 
        allBlocks={currentPage.blocks}
        key={currentPage.id}
        renderComponent={(block) => {
@@ -47,7 +49,7 @@ const Page = (props) => {
         }
        }}
        
-       />  
+       />   */}
 
 
         </div>

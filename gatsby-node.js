@@ -193,10 +193,7 @@ exports.createPages = async ({ actions, graphql }) => {
   const pageTemplate = path.resolve("./src/templates/page.js");
   const {createPage} = actions
   const {data} = await graphql(`
-  query AllPagesQuery {
-    wp {
-      themeStylesheet
-    }
+  query AllPagesQuery {  
     allWpPressrelease {
           nodes{
             id        
@@ -209,37 +206,24 @@ exports.createPages = async ({ actions, graphql }) => {
       }
     }
   `);
-  try{
-      fs.writeFileSync("./public/themeStylesheet.css",data.wp.themeStylesheet)        
-  }catch(e){}
-
-  //   try{
-  //     fs.writeFileSync("/static/wpmain.css","./src/common/css/default.css")        
+  // try{
+  //     fs.writeFileSync("./public/themeStylesheet.css",data.wp.themeStylesheet)        
   // }catch(e){}
 
-  // fs.writeFile('/static/wpmain.css', './src/common/css/default.css', function (err) {
-  //   // if (err) throw err;
-  //   // console.log('Saved!');
-  //     if(err){
-  //       console.log("error")
-  //     }else{
-  //       console.log("saved")
-  //     }
-
-  // });
+ 
   
 
   for(let i = 0; i < data.allWpPressrelease.nodes.length; i++){
       const page = data.allWpPressrelease.nodes[i];
-      let blocks = page.blocks;
-      blocks = assignIds(blocks);
+      // let blocks = page.blocks;
+      // blocks = assignIds(blocks);
       createPage({
           path:page.uri,
           component:pageTemplate,
           context:{
             id: page.id,
-            content:page.content,
-            blocks
+            // content:page.content,
+            // blocks
 
           }
       })
