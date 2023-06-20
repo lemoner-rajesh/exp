@@ -1,73 +1,21 @@
-require("dotenv").config()
-const config = require('./config')
-const pathPrefix = config.pathPrefix === '/' ? '' : config.pathPrefix
+/**
+ * 👋 Hey there!
+ * This file is the starting point for your new WordPress/Gatsby site! 🚀
+ * For more information about what this file is and does, see
+ * https://www.gatsbyjs.com/docs/gatsby-config/
+ *
+ */
 
-console.log(`Using environment config: '${process.env.ENV}'`)
-const SiteUrl = process.env.ENV == 'clone' ? 'exp.aljhealth.com/' : 'exp.aljhealth.com/'
-console.log("siteUrl");
-console.log(SiteUrl);
 module.exports = {
-    siteMetadata: {
-        title: 'Jameel Health',
-        subtitle: `Fetch Data From Local WP Install`,
-        siteUrl: `https://jameelhealth.aljhealth.com`,
-    },
-    plugins: [
-        `gatsby-transformer-sharp`,
-        `gatsby-plugin-sass`,
-        {
-            resolve: `gatsby-plugin-sharp`,
-            options: {
-                // Defaults used for gatsbyImageData and StaticImage
-                defaults: {
-                    formats: [`auto`, `webp`],
-                    placeholder: `blurred`,
-                    breakpoints: [750, 1080, 1366, 1920]
-                },
-                // Set to false to allow builds to continue on image errors
-                // failOnError: false,
-                failOn: `warning`,
-                quality: 1,
-
-            },
-        },
-        `gatsby-plugin-react-helmet`,
-        {
-            resolve: `gatsby-plugin-styled-components`,
-            options: {
-                // Add any options here
-            },
-        },
-        {
-            resolve: `gatsby-plugin-canonical-urls`,
-            options: {
-                siteUrl: `https://exp.aljhealth.com`,
-            },
-        },
-        {
-            resolve: 'gatsby-plugin-load-script',
-            options: {
-                src: '/main.js',
-                crossorigin: 'anonymous',
-            },
-        },
-        {
-            resolve: 'gatsby-plugin-apollo',
-            options: {
-                uri: `http://${SiteUrl}/graphql`
-            }
-        },
-        {
-            resolve: `gatsby-plugin-google-gtag`,
-            options: {
-                // You can add multiple tracking ids and a pageview event will be fired for all of them.
-                trackingIds: [
-                    "G-SB99HZNPH4", // Google Analytics / GA
-
-                ],
-            },
-        },
-        {
+  /**
+   * Adding plugins to this array adds them to your Gatsby site.
+   *
+   * Gatsby has a rich ecosystem of plugins.
+   * If you need any more you can search here: https://www.gatsbyjs.com/plugins/
+   */
+  plugins: [
+    'gatsby-plugin-uninline-styles',
+    {
             /**
              * First up is the WordPress source plugin that connects Gatsby
              * to your WordPress site.
@@ -88,15 +36,8 @@ module.exports = {
                         password: "aljadmin",
                     }
                 },
-                verbose: true,
-                schema: {
-                    previewRequestConcurrency: 150,
-                    timeout: 600000,
-                    // perPage: 20, // currently set to 100 600000
-                    // requestConcurrency: 5, // currently set to 15
-                    // previewRequestConcurrency: 2, // currently set to 150
-                    // typePrefix: `Wp`,
-                },
+                // url: `http://54.174.207.47/graphql`,  
+                verbose: true,    
                 production: {
                     allow404Images: true,
                     allow401Images: true,
@@ -105,7 +46,7 @@ module.exports = {
                 html: {
                     useGatsbyImage: true,
                     generateWebpImages: true,
-                    placeholderType:'none',
+                    placeholderType:'blurred',
                     createStaticFiles: true,
 
                 },
@@ -133,27 +74,84 @@ module.exports = {
             //     '/*/*/menus'
             // ],
         },
-        // {
-        //     resolve: `gatsby-plugin-page-creator`,
-        //     options: {
-        //         path: `${__dirname}/src/templates`,
-        //         useACF: true,
-        //     },
-        // },
-        {
-            resolve: `gatsby-plugin-gdpr-cookies`,
-            options: {
-                googleAnalytics: {
-                    trackingId: 'GTM-MLTX392', // leave empty if you want to disable the tracker
-                    cookieName: 'gatsby-gdpr-google-analytics', // default
-                    anonymize: true, // default
-                    allowAdFeatures: false // default
-                },
-                // defines the environments where the tracking should be available  - default is ["production"]
-                environments: ['production', 'development']
-            },
-        },
-        `gatsby-plugin-styled-components`,
-        `gatsby-plugin-sitemap`,
-    ],
-};
+    // {
+    //   /**
+    //    * First up is the WordPress source plugin that connects Gatsby
+    //    * to your WordPress site.
+    //    *
+    //    * visit the plugin docs to learn more
+    //    * https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-source-wordpress/README.md
+    //    *
+    //    */
+    //   resolve: `gatsby-source-wordpress`,
+    //   options: {
+    //     // the only required plugin option for WordPress is the GraphQL url.
+    //     url:
+    //       process.env.WPGRAPHQL_URL ||
+    //       `https://wpgatsbydemo.wpengine.com/graphql`,
+    //   },
+    // },
+
+    /**
+     * We need this plugin so that it adds the "File.publicURL" to our site
+     * It will allow us to access static url's for assets like PDF's
+     *
+     * See https://www.gatsbyjs.org/packages/gatsby-source-filesystem/ for more info
+     */
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `assets`,
+        path: `${__dirname}/content/assets`,
+      },
+    },
+
+
+    /**
+     * The following two plugins are required if you want to use Gatsby image
+     * See https://www.gatsbyjs.com/docs/gatsby-image/#setting-up-gatsby-image
+     * if you're curious about it.
+     */
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+    `gatsby-plugin-image`,
+    `gatsby-plugin-sass`,
+    {
+      // See https://www.gatsbyjs.com/plugins/gatsby-plugin-manifest/?=gatsby-plugin-manifest
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Gatsby Starter WordPress Blog`,
+        short_name: `GatsbyJS & WP`,
+        start_url: `/`,
+        background_color: `#ffffff`,
+        theme_color: `#663399`,
+        display: `minimal-ui`,
+        icon: `content/assets/gatsby-icon.png`,
+      },
+    },
+
+    // See https://www.gatsbyjs.com/plugins/gatsby-plugin-react-helmet/?=gatsby-plugin-react-helmet
+    `gatsby-plugin-react-helmet`,
+    // {
+    //   // resolve: 'gatsby-plugin-copy-files-enhanced',
+    //   // options: {
+    //   //   source: `${__dirname}/src/common`,
+    //   //   destination: '/static/common',
+    //   //   purge: true,
+    //   // },
+    //   resolve: `gatsby-plugin-copy`,
+    //   options: {
+    //     src: `${__dirname}/src/common`,
+    //     dest: `${__dirname}/static/common`,
+    //   },
+    // },
+
+    /**
+     * this (optional) plugin enables Progressive Web App + Offline functionality
+     * To learn more, visit: https://gatsby.dev/offline
+     */
+    // `gatsby-plugin-offline`,
+    `gatsby-plugin-perf-budgets`,
+    `gatsby-plugin-webpack-bundle-analyser-v2`
+  ],
+}

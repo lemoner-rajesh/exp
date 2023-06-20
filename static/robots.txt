@@ -1,8 +1,2 @@
 User-agent: *
-allow:
-
-Sitemap:https://aljhealth.com/en-sitemap.xml
-Sitemap:https://aljhealth.com/ar-sitemap.xml
-
-User-agent: Googlebot-Image
-Disallow: /wp-content/uploads/2021/01/13071916/cellarity-logo.png
+Disallow:

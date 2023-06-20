@@ -105,12 +105,13 @@
 }
 
 body {
-  font-family: Karbon;
+  font-family: Karbon !important;
   font-weight: 200;
   position: relative;
-  font-size: 19px;
+  /* font-size: 19px; */
   line-height: 1.4;
   overflow-x: hidden;
+  /* background-color: red; */
 }
 
 .menu-lang-child {
@@ -188,8 +189,8 @@ header #logo,
 header .logo {
   display: block;
   /* width: 280px; */
-  width: 140px;
-  background-image: url(../images/logo-white.png);
+  width: 100px;
+  background-image: url(../images/logo-dark.png);
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100% auto;
@@ -438,7 +439,7 @@ li.menu-item-has-children:hover {
   padding: 7px 30px;
   display: block;
   background: url("https://media.aljhealth.com/wp-content/uploads/2022/06/06070347/menu-arrow-new.png")
-    no-repeat right 14px;
+    no-repeat right 19px;
   font-size: 22px;
   background-size: 7px;
   margin-right: 20px;
@@ -924,11 +925,11 @@ header .progressbar {
   left: 35px;
 }
 .scroll-down img {
-  max-width: 30px;
+  max-width: 25px;
 }
 .scroll-down span {
   margin-left: 5px;
-  font-size: 23px;
+  font-size: 12px;
   color: #76cbfd;
 }
 .bounce {
@@ -1018,12 +1019,10 @@ section h5 {
   font-size: 26px;
   margin-bottom: 35px;
 }
-
-.newslisting .text-editor p, .contact-us-main-block .wp-bootstrap-blocks-container p,section strong{
-  font-size: 24px;
+section strong {
   font-weight: 300;
+  font-size: 22px;
 }
-
 /* .our-solution-banner img, */
 .our-solution-banner h1 {
   display: inline-block;
@@ -1053,20 +1052,10 @@ section h5 {
   position: relative;
   left:0;
 }
-/* .our-partner-banner img {
+.our-partner-banner img {
   width: auto !important;
   left: 0px !important;
   max-height: 80px;
-} */
-.solution-icon-spotlight{
-  width: 80px !important;
-  left: 0px !important;
-  max-height: 110px;
-}
-.partner-icon-spotlight{
-  max-width: 280px !important;
-  left: 0px !important;
-  max-height: 110px;
 }
 .our-solutions-icons {
   margin-top: 50px;
@@ -1132,11 +1121,11 @@ section h5 {
   padding: 20px 0 21px 0;
 }
 
-/* .our-solutions-section a {
+.our-solutions-section a {
   color: #6ac9ff;
   text-decoration: none;
   margin-left: 0px;
-} */
+}
 
 .what-we-do-solutions a {
   color: #6ac9ff;
@@ -1262,17 +1251,17 @@ section h5 {
   margin: 0 -15px;
 }
 
-.latest-news-insights .insights_btn {
+.latest-news-insights .news_btn {
   border: none;
   background: none;
   color: #fff;
   font-size: 30px;
   margin: 0;
-  padding: 0 15px 0 15px;
+  padding: 0 0 0 15px;
   cursor: pointer;
 }
 
-.latest-news-insights .news_btn {
+.latest-news-insights .insights_btn {
   border: none;
   border-left: 1px solid #fff;
   background: none;
@@ -1298,10 +1287,7 @@ section h5 {
   font-weight: 300;
   font-size: 35px;
 }
-.partner-listing-container .partner-thumbnail-img img{
-  height: 169px;
-  width: 169px;
-}
+
 .partner-listing-box {
   border: 1px solid #45c5ba;
   padding: 5px;
@@ -1386,7 +1372,7 @@ section h5 {
 
 .partner-list-newsinsights .insights_btn {
   color: #0e1621;
-  border-right: 1px solid #0e1621;
+  border-left: 1px solid #0e1621;
 }
 
 .partner-list-newsinsights .latest-news-insights-pagenation-container {
@@ -1414,13 +1400,7 @@ section h5 {
 .our-presence-section a,
 .investment a,
 .partner-logo-container a,
-.featured-partner .featured-partner-read-more,
-.our-solutions-section a,
-.featured-partner .position-relative p strong a,
-.home-news-two.text .animated-text a,
-.latest-news-link a,
-.readmore,
-.home-news-one.text .animated-text a,
+.featured-partner a,
 .wo-section a {
   font-size: 19px;
   color: #45c5ba;
@@ -1430,16 +1410,8 @@ section h5 {
   background-size: 7px;
   padding-right: 18px;
   margin-bottom: 30px;
-  text-transform: uppercase;
 }
-.featured-partner a{
-  font-size: 19px;
-  color: #45c5ba;
-  font-weight: 300 !important;
-  background-size: 7px;
-  /* padding-right: 18px; */
-  margin-bottom: 30px;
-}
+
 .wo-section ul,
 .wo-section ol {
   margin: 0 0 0 19px;
@@ -1505,6 +1477,7 @@ section h5 {
 
 .our-presence-section p a,
 .investment p a,
+.featured-partner p a,
 .wo-section p a,
 .partner-logo-container p a {
   font-weight: 300 !important;
@@ -1517,9 +1490,6 @@ section h5 {
 }
 .our-presence-section .locatons-list{
   margin-bottom: 25px;
-}
-.our-presence-section .locatons-list a{
-  background: none;
 }
 .our-presence-section h4 {
   margin-bottom: 0;
@@ -1568,7 +1538,6 @@ section .p {
   margin: 0 0 15px 15px;
   padding: 0 !important;
 }
-
 .dotlist ul li::before,
 .newscontent ul li::before {
   content: "\2022";
@@ -1715,15 +1684,11 @@ section .p {
 .solution-details-section .text {
   padding: 50px 0 0 0;
 }
-.solution-details-section .wp-bootstrap-blocks-container{
-  padding: 50px 0px;
-}
 .africa-section {
   color: #fff;
-  /* background-size: cover; */
+  background-size: cover;
   background-position: center right;
   background-attachment: fixed;
-  background-repeat: no-repeat;
 }
 .africa-section h4 {
   color: #fff;
@@ -1791,8 +1756,7 @@ img.other-partner-logo {
   height: 73px;
 }
 .partner-section .iimgbx img {
-  /* height: 80%; */
-  height: 100%;
+  height: 80%;
 }
 .partner-controller {
   display: flex;
@@ -1838,31 +1802,7 @@ img.other-partner-logo {
   justify-content: space-between;
   margin-bottom: 0px;
 }
-.featured-market-list-section .featured-market-slider-section{
-    display: flex;
-    /* width: 50px; */
-    justify-content: space-between;
-    margin-bottom: 0px;
-    position: absolute;
-    bottom: 25px;
-    margin: 0 auto;
-    left: 0;
-    right: 0;
-    background: transparent !important;
-    padding: 10px 0px;
 
-}
-.featured-market-list-section{
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.featured-market-list-section .featured-market-slider-section li.slick-active button{
-  background: #fff;
-    border: 1px solid #fff;
-}
-.featured-market-list-section .featured-market-slider-section li button{
-  border: 1px solid #fff;
-}
 .page-404 {
   background-image: url(https://media.aljhealth.com/wp-content/uploads/2021/01/28144149/background-images-header.jpg);
   background-size: cover;
@@ -2204,15 +2144,15 @@ margin-bottom: 10px;
   font-size: 16px;
   font-weight: 300;
   color: #000;
-  min-height: 45px;
+  /* min-height: 48px; */
 }
-/* .latest-news-link a {
+.latest-news-link a {
   color: #56bbff;
   background: url(https://media.aljhealth.com/wp-content/uploads/2022/06/15133709/insight-new-btn-arrow.png)
     right 3px / 7px no-repeat;
   padding-right: 18px;
   font-weight: 300;
-} */
+}
 .latest-news-link {
   padding: 15px 0 0 0;
 }
@@ -2291,7 +2231,7 @@ margin-bottom: 10px;
 .contact-us-container .readmore {
   background: #45c5ba;
   border: none;
-  color: #fff !important;
+  color: #fff;
   cursor: pointer;
   font-size: 20px;
   font-weight: 400;
@@ -2446,7 +2386,7 @@ height:500px;
   margin-right: 25px;
 }
 .footerlogo img {
-  width: 140px;
+  width: 100px;
 }
 .ftsocial {
   margin: 50px 0;
@@ -2911,13 +2851,13 @@ height:500px;
   font-size: 19px;
   margin: 20px 0 10px;
 }
-.viewbio {
+.readmore {
   display: block;
   color: #6ac9ff;
   font-size: 16px;
   font-weight: 500;
 }
-.viewbio:hover {
+.readmore:hover {
   opacity: 0.8;
 }
 
@@ -3040,238 +2980,16 @@ height:500px;
   margin-top: 20px;
   font-weight: 400;
 }
-.newsperbx {
-  border: 1px solid #e2e2e2;
-  color: #616163;
-  margin-top: 30px;
-}
-.newsperbx img {
-  max-width: 100%;
-}
-.newsperbx .imgbx {
-  position: relative;
-}
-.newsperbx .imgbx img {
-  width: 100%;
-}
-.newsperbx .imgbx.imgfixh {
-  background: #616163;
-}
-.newsperbx .imgbx.imgfixh a {
-  opacity: 1;
-}
-.newsperbx .imgbx.imgfixh img {
-  opacity: 0.98;
-}
-.newsperbx .imgcat {
-  position: absolute;
-  width: 60px;
-  padding: 10px;
-  background: #fff;
-  right: 10px;
-  bottom: -18px;
-}
-.newsperbx .textbx {
-  padding: 15px;
-  background: #fff;
-}
-.newsperbx .textbx > p {
-  height: 76px;
-  overflow: hidden;
-}
-.newsperbx .textbx > p + p {
-  display: none;
-}
-.newsperbx a:hover {
-  text-decoration: none;
-}
-.newsperbx h4 {
-  height: 78px;
-  overflow: hidden;
-  margin: 15px 0 10px;
-  font-size: 22px;
-  color: #1b62b0;
-  font-weight: 400;
-  line-height: 1.2;
-}
-.newsperbx p {
-  font-size: 16px;
-  line-height: 1.2;
-}
-.newsperbx .timings p {
-  font-weight: 500;
-  margin-bottom: 0;
-  height: 19px;
-  overflow: hidden;
-}
-.newsinner .newscontent video {
-  width: 100%;
-}
-.wp-block-video,
-.wp-block-video video,
-.newscontent video {
-  width: 100%;
-}
 
-.newsperbx .timings p + p {
-  margin-top: 5px;
-}
-.newsperbx .timings img {
-  position: relative;
-  top: -2px;
-  width: 13px;
-  margin-right: 5px;
-  display: inline-block;
-}
-.newsperbx .timings p.h-auto {
-  height: auto !important;
-}
-.newsperbx .timings p.h-38 {
-  font-size: 14px;
-}
 
-.newscontent a {
-  word-break: break-all;
-}
-.wp-block-image img {
-  height: auto;
-}
-
-/* .newscontent .wp-block-image .alignright,
-.newscontent .wp-block-image .alignleft{
-    display: table;
-}
-.newscontent .wp-block-image figcaption{
-    display: table-caption;
-    caption-side: bottom;
-    width: 90%;
-} */
-.newscontent .wp-block-image figcaption,
-.newscontent .wp-block-embed figcaption {
-  font-size: 14px;
-  /* text-align: center; */
-  margin-top: 10px;
-
-  /* display: table-caption;
-    caption-side: bottom; */
-}
-
-.newscontent .wp-block-image .alignleft figcaption,
-.newscontent .wp-block-embed .alignleft figcaption,
-.newscontent .wp-block-image .alignright figcaption,
-.newscontent .wp-block-embed .alignright figcaption,
-.newscontent .wp-block-image .aligncenter figcaption,
-.newscontent .wp-block-embed .aligncenter figcaption {
-  display: table-caption;
-  caption-side: bottom;
-}
-
-.newscontent .wp-block-image .aligncenter {
-  display: table;
-}
-
-.newscontent .wp-block-image .alignleft {
-  float: left;
-  /* padding-right: 25px; */
-  padding-bottom: 10px;
-  margin-right: 25px;
-  display: table;
-}
-
-.newscontent .wp-block-image .alignright {
-  float: right;
-  /* padding-left: 25px; */
-  padding-bottom: 10px;
-  margin-left: 25px;
-  display: table;
-}
-
-.newscontent .wp-block-embed .wp-block-embed__wrapper {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
-}
-
-/* Then style the iframe to fit in the container div with full height and width */
-.newscontent .wp-block-embed .wp-block-embed__wrapper iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.newsperbx .readmore img {
-  width: 9px;
-  margin-left: 5px;
-  display: inline-block;
-}
-.newsperbx .readmore img {
-  width: 9px;
-  margin-left: 5px;
-  display: inline-block;
-}
-.newsperbx .bottomrow {
-  margin: 25px 0 0;
-}
-.newsperbx .bottomrow > div {
-  padding: 0 !important;
-}
-.newsperbx .socialbx {
-  float: right;
-  position: relative;
-  padding: 0;
-  margin: 0;
-  font-size: 0;
-  list-style: none;
-}
-.newsperbx .socialbx li {
-  float: left;
-  padding-right: 8px;
-  margin-right: 8px;
-  border-right: 1px solid #dcdcdc;
-}
-.newsperbx .socialbx li::before {
-  display: none;
-}
-.newsperbx .socialbx li:last-child {
-  padding-right: 0;
-  margin-right: 0;
-  border-right: none;
-}
-.newsperbx .socialbx .sicons {
-  display: block;
-  width: 20px;
-}
-.newsperbx .socialbx .shareclick {
-  width: 16px;
-}
 .featured-partner {
   background: #dceefa;
   padding: 70px 0;
 }
-.latest-news-insights .date-numbers{
-    color: #000;
-    font-size: 16px;
-    font-weight: 300;
-}
-.featured-partner .featured-img-section{
-  height: 100%;
-}
-.featured-partner .featured-img-section img{
-  object-fit: cover;
-  height: 100%;
-}
+
 img.featured-partner-logo{
-/* width: auto;
-max-height: 70px; */
 width: auto;
-max-height: 100px;
-max-width: 280px;
-/* filter: invert(1); */
+max-height: 70px;
 }
 .featured-partner .text {
   padding: 0 0 30px 0;
@@ -3283,33 +3001,17 @@ max-width: 280px;
   border: none;
 }
 a.see-all-partner-btn {
-  font-size: 19px;
-  color: #45c5ba;
+  font-size: 16px;
+  color: #212529;
   background-position: right top 7px;
-  font-weight: 400 !important;
-  background: url(https://media.aljhealth.com/wp-content/uploads/2022/07/14090040/about-btn-arrow-red.png) no-repeat right 5px;
-  /* position: absolute; */
-  background-size: 7px;
-  /* left: 0;
-  bottom: -40px; */
+  font-weight: 300 !important;
+  background: none;
+  position: absolute;
+  left: 0;
+  bottom: -15px;
   margin: 0;
-  padding-right: 18px;
-  margin-bottom: 0px;
-  text-decoration: none;
-  z-index: 2;
-  text-transform: uppercase;
-  display: inline-block;
-  margin-top: 15px;
+  text-decoration: underline;
 }
-
-/* font-size: 19px;
-  color: #45c5ba;
-  font-weight: 500;
-  background: url(https://media.aljhealth.com/wp-content/uploads/2022/07/14090040/about-btn-arrow-red.png)
-    no-repeat right 3px;
-  background-size: 7px;
-  padding-right: 18px;
-  margin-bottom: 30px; */
 .feature-partner-video {
   position: absolute;
   left: 20px;
@@ -3327,18 +3029,9 @@ a.see-all-partner-btn {
   height: 100%;
   width: 100%;
   position: absolute;
-   /* background: -moz-linear-gradient(280deg, rgba(2,0,36,0) 0%, rgba(39,172,211,0) 0%, rgba(16,82,134,1) 100%);
+  background: -moz-linear-gradient(280deg, rgba(2,0,36,0) 0%, rgba(39,172,211,0) 0%, rgba(16,82,134,1) 100%);
   background: -webkit-linear-gradient(280deg, rgba(2,0,36,0) 0%, rgba(39,172,211,0) 0%, rgba(16,82,134,1) 100%);
-  background: linear-gradient(280deg, rgba(2,0,36,0) 0%, rgba(39,172,211,0) 0%, rgba(6,39,63,1) 100%); */
-  /* New gradient color below */
-  /* background: linear-gradient(90deg, rgba(0,46,93,1) 0%, rgba(81,133,154,1) 35%, rgba(89,203,232,0) 100%);
-  background: -moz-linear-gradient(90deg, rgba(0,46,93,1) 0%, rgba(81,133,154,1) 35%, rgba(89,203,232,0) 100%); */
-  /* background-image: url(https://media.aljhealth.com/wp-content/uploads/2022/06/18111824/banner-2-overlay.png); */
-  /* background-image: url(https://media.aljhealth.com/wp-content/uploads/2022/06/19090648/banner-3.png); */
-  background: linear-gradient(97deg, rgba(0,36,73,1) 13%, rgba(28,118,186,0.9808298319327731) 36%, rgba(30,106,163,0) 60%);
-  background-repeat: no-repeat;
-  background-position: left center;
-  background-size: cover;
+  background: linear-gradient(280deg, rgba(2,0,36,0) 0%, rgba(39,172,211,0) 0%, rgba(6,39,63,1) 100%);
 }
 
 .featuredwrapper {
@@ -3535,7 +3228,7 @@ section.contentbx.peoplelists.accordiansec.pb-0 {
   color: #fff;
 }
 
-.our-poeple-management-bg .viewbio {
+.our-poeple-management-bg .readmore {
   color: #0d233b;
 }
 
@@ -3787,7 +3480,7 @@ section.contentbx.peoplelists.accordiansec.pb-0 {
 .about-us-main-block p strong,
 .investment-block p strong {
   font-weight: 300;
-  font-size: 24px;
+  font-size: 22px;
 }
 
 .about-us-main-block .wp-bootstrap-blocks-row,
@@ -3797,21 +3490,14 @@ section.contentbx.peoplelists.accordiansec.pb-0 {
 
 .what-we-do-main-block p strong, .our-people-listing-block p strong{
       font-weight: 300;
-    font-size: 24px;
+    font-size: 22px;
     
 }
-.what-we-do-main-block .whatwedo-section{
-  padding-bottom: 50px;
-}
+
 .what-we-do-main-block .wp-bootstrap-blocks-container p{
   padding-top: 50px;
 }
-.other-partner-section-investment .text{
-  padding: 50px 0px 0px 0px;
-}
-.other-partner-section-investment .other-partner-logo-container{
-  margin-top: 0px !important;
-}
+
 .our-people-listing-block h4{
   color: #0d233b;
   font-size: 36px;
@@ -3902,10 +3588,7 @@ section.contentbx.peoplelists.accordiansec.pb-0 {
     margin-left: -1em;
 }
 
-.partner-detail-main-block .wp-bootstrap-blocks-container strong{
-  font-size: 24px;
-    font-weight: 300;
-}
+
 .partner-detail-main-block .wp-bootstrap-blocks-container{
   padding-top: 50px;
   padding-bottom: 50px;
@@ -3992,57 +3675,46 @@ section.contentbx.peoplelists.accordiansec.pb-0 {
   padding: 0;
 }
 
- .other-partner-inner .partner-list-logo img{
+ .partner-list-logo img{
   display: flex;
     margin: auto;
-    padding: 0px 10px 0px 0px !important;
+    padding: 0px 30px;
 }
 
-.partner-list-logo img{
-  display: flex;
-    margin: auto;
-    padding: 0px 10px 0px 10px;
-    max-height: 130px;
-}
-
-  .partners-slider .partner-thumbnail-img img{
+ /* .partner-thumbnail-img img{
     object-fit: contain;
     object-position: center;
     width: 150px;
     height: 150px;
-}
+} */
 
 .our-market-partners{
   margin-bottom: 80px;
 }
-.our-market-partners .text p,.what-we-do-main-block .wp-bootstrap-blocks-container p, .solution-detail-main-block .wp-bootstrap-blocks-container strong{
-  font-weight: 300;
-  font-size: 24px;
-}
 .our-market-partners .partner-thumbnail-img{
-  border-top: 1px solid #6ac9ff;
+  border-bottom: 1px solid #0D233B;
     padding-bottom: 15px;
     margin-bottom: 5px;
 }
 
 .partners-list-box{
-  max-width: 310px;
+  max-width: 210px;
   margin-bottom: 20px;
 }
 
 .our-market-partners .partner-thumbnail-img img{
   object-fit: contain;
   object-position: bottom;
-  width: 100%;
+  width: 120px;
   height: 90px;
-  /* filter: invert(1); */
+  filter: invert(1);
 }
 .our-market-partners  .partners-list-box a{
   color: inherit;
 }
-/* .our-market-partners  .partners-list-box span{
+.our-market-partners  .partners-list-box span{
   font-weight: 500;
-} */
+}
 
 
 
@@ -4050,12 +3722,12 @@ section.contentbx.peoplelists.accordiansec.pb-0 {
 
 
 
-/* .our-solutions-section a{
+.our-solutions-section a{
       background: url(https://media.aljhealth.com/wp-content/uploads/2022/07/14090040/about-btn-arrow-red.png) no-repeat right 3px;
     background-size: 7px;
     padding-right: 18px;
     padding-bottom: 5px;
-} */
+}
 
 /* .what-we-do-main-block .wp-bootstrap-blocks-container{
   padding: 0px;
@@ -4108,67 +3780,10 @@ padding-bottom: 50px;
   position: absolute;
   width: 200px;
 }
-
-
-
-/* NEW MAP */
-.mapMainWrapper{
-  background: rgb(14,46,86);
-    background: linear-gradient(90deg, rgba(14,46,86,1) 0%, rgba(1,110,189,1) 100%);
-}
-  .mapplic-legend{
-    background: none !important;
-    background-color: none;
-    color: #fff;				
-  }
-  .mapplic-legend-label{
-    margin: 16px 0;
-      padding-left: 40px;
-  }
-  .mapplic-legend-key{
-    height: 20px;
-    width: 25px;
-    border: 1px solid #fff;
-    border-radius: 0;
-    margin-top: -3px;
-  }
-  
-  .map-container{
-    position: relative;
-  }
-  .map-container ul{
-    list-style: none;
-    position: absolute;
-    bottom: 25px;
-    left: 25px;
-    margin: 0;
-    padding: 0;
-  }
-
-  .map-container ul li{
-    display: flex;
-    align-items: center;
-    margin-bottom: 5px;
-  }
-  .map-container ul li p{
-    margin: 0;
-    margin-left: 10px;
-    color: #fff;
-    
-  }
-  .map-container ul li img{
-    width: 25px;
-    height: auto;
-  }
-/* NEW MAP */
-
-
-
 .latest-news-insights span{
-    font-size: 30px;
+      font-size: 30px;
     color: white;
     font-weight: 400;
-    padding-left: 15px;
 }
 
 .pages-main-block.inner-pages a{
@@ -4189,10 +3804,10 @@ padding-bottom: 50px;
   position:absolute;
   }
   
-  .partner-disclaimer{
-    padding-top: 40px;
+  
+  .partnerdisclaimer{
+    padding: 0px;
   }
- 
 
 
 
@@ -4218,66 +3833,53 @@ padding-bottom: 50px;
 .newsltrcheck input {
   margin-top: 3px;
 }
+/* 
 
-.featured-partner-pagination-container,.featured-market-slider-section{
-  background: transparent !important;
+.wp-block-image figcaption{
+  font-size: 13px;
 }
-.featured-market-list-section{
+
+body .is-layout-constrained > .alignright,
+body .is-layout-constrained > .alignleft{
+  -webkit-margin-start: 0 !important;
+  margin-inline-start: 0 !important;
+  -webkit-margin-end: 0 !important;
+  margin-inline-end: 0 !important;
+}
+
+
+.wp-block-embed-youtube .wp-block-embed__wrapper{
   position: relative;
+  padding-bottom: 56.25%; 
+  height: 0;
 }
-.featured-market-slider-section{
+.wp-block-embed-youtube .wp-block-embed__wrapper iframe {
   position: absolute;
-  bottom: 15px;
-}
-.featured-partner-slider,.featured-partner-slider .slick-list, .featured-partner-slider .slick-track{
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 100%;
 }
 
-.featured-partner-slider .featured-img-section img{
-  width: 100%;
-}
-.featured-partner-slider .feature-partner-video img{
-      width: 150px !important;
-}
-.featured-partner .featured-img-section img{
-  width: 100%;
-}
-.partners-list-box{
-  font-weight: 300 !important;
-}
-.foot-notes strong{
-  font-size: 16px !important;
-}
-.footer-nav-title a{
-	color:#ffffff !important;
-}
-
-.featured-partner-pagination-container .slick-dots li:only-child , .other-partner-pagenation-container .slick-dots li:only-child{
-    display:none !important;
+.wp-block-image.alignright{
+  float: right;
+  margin-inline-start: 1em;
+    margin-inline-end: 0;
+margin-inline-start: 1em;
+margin-inline-end: 0;
 }
 
 
-/* .featured-partner-slider .gatsby-image-wrapper{
-  height: 100%;
-} */
-
-.africa-section .text{
-	height:960px !important;
+.wp-block-image.alignleft{
+  float: left;
+  margin-inline-start: 0;
+    margin-inline-end:  1em;
+margin-inline-start: 0;
+margin-inline-end:  1em;
 }
-.our-presence-section a{
-  text-transform: lowercase !important;
-}
-
-
-.hide-field{
-  display: none !important;
-}
-.featured-partner-logo-wrapper{
-  width: auto;
-  max-height: 85px;
-}
-.wp-block-lazyblock-shortform-solutions-slider .about-solutions-container h4{
-  padding-top: 0px !important;
-  color: #ffffff;
-}
-
+ 
+.wp-block-image.aligncenter{
+  margin-left: auto !important;
+  margin-right: auto !important;
+ }
+    */
