@@ -1,0 +1,18 @@
+version: 0.2
+
+phases: 
+  build: 
+    commands: 
+      - "echo Clean the cache, run build and deploy the public directory"
+      - "npm run clean && npm run build && aws s3 rm --recursive $BUCKET_NAME && aws s3 sync public $BUCKET_NAME --delete"
+      - "echo invalidating cloudfront cache"
+      - "aws cloudfront create-invalidation --distribution-id  $CF_DIST_ID --paths \"/*\""
+  post_build: 
+    commands: 
+      - "echo deployment completed on `date`"
+  pre_build: 
+    commands: 
+      - "echo deployment started on `date`"
+      - "echo installing npm dependencies"
+      - "npm install"
+      

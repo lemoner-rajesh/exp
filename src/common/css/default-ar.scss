@@ -1,9 +1,7 @@
 body.arabic{
     // font-family:Luma;
-    font-family: Luma, Karbon !important;    
+    font-family: Luma, Karbon;    
     font-weight: 400;
-    direction: rtl;
-    text-align: right;
 }
 
 .arabic{
@@ -39,7 +37,12 @@ h1 span.en-text{
     font-weight:300;
 }
 
-
+.partner-logo-container .partner-section .iimgbx img{
+    height: 100% !important;
+}
+.about-section .text-first{
+    padding: 0 0 0 50px;
+}
 .datebx .en-text,
 .for-inq p a,
 .main-slider-wrapper .text h4{
@@ -78,11 +81,21 @@ line-height: inherit;
 .our-solutions-section {
      text-align: right;
 }
+.our-solutions-section a{
+    background: url(https://media.aljhealth.com/wp-content/uploads/2022/08/17093453/about-btn-arrow-red-ar.png) no-repeat left 10px;
+    background-size: 7px;
+    padding-left: 18px;
+    padding-right: 0px;
+    padding-bottom: 5px;
+}
 .our-solutions-icons {
      direction: rtl;
      text-align: right;
 }
-
+.our-solutions-icons .img-wrapper{
+    margin-left: 20px;
+    margin-right: 0px;
+}
 .our-solutions-icons .pr-md-5{
     padding-right:15px !important;
     padding-left: 3rem!important;
@@ -219,7 +232,9 @@ img.other-partner-logo{
     cursor: pointer;
     float: right;
 }
-
+.latest-news-insights span{
+    float: right;
+}
 .latest-news-insights-class{
     border-right:0px !important;
 }
@@ -250,7 +265,10 @@ padding: 0px 15px 0px 0px;
     direction: rtl;
     text-align: right;
 }
-
+.partner-listing-container .partner-thumbnail-img img{
+    height: 169px;
+    width: 169px;
+}
 .partner-listing-container .radio-custom + .radio-custom-label::before {
     margin-left: 20px;
     margin-right:0px;
@@ -264,14 +282,17 @@ padding: 0px 15px 0px 0px;
 }
 
 .about-section-btn a, .our-presence-section a, .investment a, .partner-logo-container a, .featured-partner a, .wo-section a {
-    background: url(https://media.aljhealth.com/wp-content/uploads/2022/08/17093453/about-btn-arrow-red-ar.png) no-repeat left 10px;
+    background: url(https://media.aljhealth.com/wp-content/uploads/2022/08/17093453/about-btn-arrow-red-ar.png) no-repeat left 6px;
     background-size: 8px;
     padding-left: 18px;
     padding-right:0;
     direction: ltr;
     display: inline-block;
 }
-
+.partner-logo-container a{
+    font-weight: 400 !important;
+    padding-left: 0;
+}
 .about-section .text-second {
     padding: 50px 50px 0 0px;
 }
@@ -294,11 +315,29 @@ padding: 0px 15px 0px 0px;
     margin-left: 30px;
     margin-right:0px;
 }
-
+.download-brochure .download-link{
+    margin-right: 30px;
+}
+.download-brochure .download-image{
+    margin-left: 0px;
+}
 .download-link-item img {
     margin-right: 15px;
     margin-left: 0;
 }
+.our-market-partners{
+    direction: rtl;
+    text-align: right;
+}
+.about-solutions-container{
+    direction: rtl;
+    text-align: right;
+}
+// .slick-slider .slick-track, .slick-slider { direction: rtl; }
+// [dir='rtl'] .slick-slide
+// {
+//     float: left;
+// }
 p {
     font-weight: 400;
 }
@@ -311,7 +350,9 @@ p {
     text-align: right;
     direction: rtl;
 }
-
+.our-presence-section .locatons-list a{
+    background: none;
+}
 a.phone-number {
     font-weight: 400 !important;
 }
@@ -370,7 +411,7 @@ a.phone-number {
 }
 
 .inner-wrapper ul {
-    padding-right: 100px;
+    // padding-right: 100px;
     padding-left:0px;
 }
 
@@ -477,12 +518,19 @@ float: right;
     margin-right: 0;
     margin-left: 10px;
 }
-
+.dotlist ul{
+    padding-right: 30px;
+}
 .dotlist ul li::before, .newscontent ul li::before {
     left: inherit;
     right: -30px;
 }
-
+.newscontent ul{
+  padding-right: 29px;
+}
+ul.has-small-font-size{
+    padding-right: 29px;
+}
 .filteration .form-control.datepicker {
   
     background-position: left 15px center;
@@ -576,22 +624,30 @@ section .heading{
     position: relative;
 }
 
-
-
+.pages-main-block ol{
+    padding-right: 24px;
+}
+.pages-main-block ul{
+    padding-right: 20px;
+}
 // New Guterburge Styling starts here
 
 
-.about-us-main-block h4{
-  padding-top: 50px;
-  color: #0d233b;
-    font-weight: 400;
-    font-size: 36px;
-    line-height: 1;
-    margin-bottom: 18px;
+// .about-us-main-block h4{
+//   padding-top: 50px;
+//   color: #0d233b;
+//     font-weight: 400;
+//     font-size: 36px;
+//     line-height: 1;
+//     margin-bottom: 18px;
+//     text-align: right;
+// }
+.about-us-main-block{
+    direction: rtl;
     text-align: right;
 }
 .about-us-main-block p strong{
-  font-weight: 300;
+  font-weight: 400;
   font-size: 22px;
   text-align: right;
 }
@@ -599,7 +655,10 @@ section .heading{
 .about-us-main-block .wp-bootstrap-blocks-row{
   padding-top: 50px;
 }
-
+.our-people-listing-block{
+    direction: rtl;
+    text-align: right;
+}
 .what-we-do-main-block p strong, .our-people-listing-block p strong{
       font-weight: 300;
     font-size: 22px;
@@ -637,6 +696,8 @@ section .heading{
 
  .contact-us-main-block{
   background: #f4f4f4;
+  direction: rtl;
+  text-align: right;
 }
 .contact-us-main-block .wp-bootstrap-blocks-container{
   margin-bottom: 0px !important;
@@ -696,7 +757,7 @@ section .heading{
 }
 
 .solution-detail-main-block .wp-bootstrap-blocks-container ul li{
-  padding-left: 10px;
+  padding-right: 10px;
   
 }
 
@@ -709,8 +770,9 @@ section .heading{
     margin-right: -1em;
     
 }
-.foot-notes, .foot-notes h4{
+.foot-notes, .foot-notes{
     direction: rtl;
+    text-align: right;
 }
 // Solution Detail Block Ends here
 
@@ -740,7 +802,10 @@ section .heading{
     width: 1em;
     margin-left: -1em;
 }
-
+.solution-home-main-block{
+    direction: rtl;
+    text-align: right;
+}
 
 .solution-home-main-block .wp-bootstrap-blocks-container h3{
     letter-spacing: 6px;
@@ -767,6 +832,8 @@ section .heading{
 
 .become-a-partner-block{
   background: #f4f4f4;
+  direction: rtl;
+  text-align: right;
 }
 .become-a-partner-block .wp-bootstrap-blocks-container{
   padding-top: 70px;
@@ -777,11 +844,21 @@ section .heading{
 .become-a-partner-block .wp-bootstrap-blocks-container p{
   padding-bottom: 30px;
 }
-
+.latest-news-insights .date-numbers{
+    color: #000;
+    font-size: 16px;
+    font-weight: 400;
+    padding-left: 3px;
+}
 // New Guternberg styling ends here
 
-
-
+.investment-block{
+    direction: rtl;
+    text-align: right;
+}
+.investment-block .partner-controller{
+    direction: ltr;
+}
 
 
 
@@ -836,7 +913,7 @@ section .heading{
 
 .ceo-section blockquote:after{
     margin-top: 0;
-    z-index: -1;
+    z-index: 0;
     top: -10px;
     margin-left: 4px;
 }
@@ -856,7 +933,7 @@ section .heading{
 .ceo-section blockquote:before{
     margin-top: 0;
     margin-left: -32px;
-    z-index: -1;
+    z-index: 0;
     bottom: 0;
 }
 .filteration .keysearch {
@@ -963,7 +1040,60 @@ section .heading{
 
 }
 @media only screen and (max-width: 767px){
+    .latest-news-insights .news_btn{
+        margin: 0px;
+    }
+    .latest-new-all-link a {
+    color: #45c5ba;
+    text-decoration: none;
+    position: absolute;
+    right: 0;
+    background: url(https://media.aljhealth.com/wp-content/uploads/2022/07/14090040/about-btn-arrow-red.png) no-repeat right 2px;
+    padding-right: 20px;
+    background-size: 8px;
+    top: -52px;
+    left: 0;
+    margin: 0 auto;
+    display: inline-table;
+}
 
+    .latest-news-insights span{
+        margin-top: 20px;
+        font-size: 30px;
+        color: white;
+        font-weight: 400;
+    }
+    .latest-news-inner{
+        min-height: 530px;
+    }
+    .latest-new-all-link a {
+    background: url(https://media.aljhealth.com/wp-content/uploads/2022/08/17093453/about-btn-arrow-red-ar.png) no-repeat left 3px;
+    background-size: 8px;
+}
+.latest-news-link a {
+    background: url(https://media.aljhealth.com/wp-content/uploads/2022/07/01121921/insight-new-btn-arrow-ar.png) left 5px/7px no-repeat;
+}
+.latest-news-insights .insights_btn{
+    font-size: 26px;
+}
+    .partner-section .iimgbx {
+    margin-top: 15px;
+    margin-bottom: 20px;
+    height: 60px;
+}
+    .close-menu {
+    right: 30px;
+}
+    .navigation-wrapper .navigation ul li .sub-menu {
+    left: 0px;
+    right: auto;
+    padding: 10px 29px 6px 20px;
+}
+    .our-solutions-section a{
+        background: url(https://media.aljhealth.com/wp-content/uploads/2022/08/17093453/about-btn-arrow-red-ar.png) no-repeat left 5px;
+        background-size: 7px;
+    
+    }
     .about-section .right-img {
         padding-left: 15px;
         padding-right: 15px;
@@ -982,9 +1112,7 @@ section .heading{
         margin-top: 0px!important;
     }
 
-    .latest-news-inner {
-        min-height: auto;
-    }
+   
 
 #map {
     left: 0 !important;

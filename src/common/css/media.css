@@ -124,7 +124,7 @@ header {
 }
 header .logo,
 header #logo {
-    width: 70px;
+    width: 78px;
 }
 
 header #logo, header .logo{
@@ -372,6 +372,22 @@ section .heading {
 
 /*-----------For Mobile View----------------*/
 @media only screen and (max-width:767px) {
+    .latest-news-date .date-numbers{
+        display: inline-block;
+    }
+    .latest-news-title .latest-news-date{
+        min-height: 75px;
+    }
+    .latest-news-title h4{
+        min-height: 79px;
+    }
+    .latest-news-title p{
+        min-height: 140px;
+    }
+    .our-solutions-section a{
+        background: url(https://media.aljhealth.com/wp-content/uploads/2022/07/14090040/about-btn-arrow-red.png) no-repeat right 1px;
+        background-size: 7px;
+    }
     .featured-partner .modal-content{
     max-width: 520px;
     margin: 0 auto;
@@ -943,7 +959,7 @@ section h5 {
     padding: 25px 0 0 0 !important;
 }
 .footerlogo img {
-    width: 70px;
+    width: 78px;
 }
 .footer-section ul li {
     margin-bottom: 2px;

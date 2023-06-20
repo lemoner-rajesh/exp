@@ -1,233 +1,555 @@
-// const path = require(`path`)
-// const chunk = require(`lodash/chunk`)
+const _ = require(`lodash`);
+const Promise = require(`bluebird`);
+const path = require(`path`);
+const slash = require(`slash`);
+// const fs = require("fs");
 
-// // This is a simple debugging tool
-// // dd() will prettily dump to the terminal and kill the process
-// // const { dd } = require(`dumper.js`)
+var langMapping = [];
+langMapping["en_US"] = "en";
+langMapping["ar"] = "ar";
+langMapping["tr_TR"] = "tr";
 
-// /**
-//  * exports.createPages is a built-in Gatsby Node API.
-//  * It's purpose is to allow you to create pages for your site! 💡
-//  *
-//  * See https://www.gatsbyjs.com/docs/node-apis/#createPages for more info.
-//  */
-// exports.createPages = async gatsbyUtilities => {
-//   // Query our posts from the GraphQL server
-//   const posts = await getPosts(gatsbyUtilities)
+var langSlugMapping = [];
+langSlugMapping["en_US"] = "en/";
+langSlugMapping["ar"] = "ar/";
+langSlugMapping["tr_TR"] = "tr/";
 
-//   // If there are no posts in WordPress, don't do anything
-//   if (!posts.length) {
-//     return
-//   }
-
-//   // If there are posts, create pages for them
-//   await createIndividualBlogPostPages({ posts, gatsbyUtilities })
-
-//   // And a paginated archive
-//   await createBlogPostArchive({ posts, gatsbyUtilities })
-// }
-
-// /**
-//  * This function creates all the individual blog pages in this site
-//  */
-// const createIndividualBlogPostPages = async ({ posts, gatsbyUtilities }) =>
-//   Promise.all(
-//     posts.map(({ previous, post, next }) =>
-//       // createPage is an action passed to createPages
-//       // See https://www.gatsbyjs.com/docs/actions#createPage for more info
-//       gatsbyUtilities.actions.createPage({
-//         // Use the WordPress uri as the Gatsby page path
-//         // This is a good idea so that internal links and menus work 👍
-//         path: post.uri,
-
-//         // use the blog post template as the page component
-//         component: path.resolve(`./src/templates/blog-post.js`),
-
-//         // `context` is available in the template as a prop and
-//         // as a variable in GraphQL.
-//         context: {
-//           // we need to add the post id here
-//           // so our blog post template knows which blog post
-//           // the current page is (when you open it in a browser)
-//           id: post.id,
-
-//           // We also use the next and previous id's to query them and add links!
-//           previousPostId: previous ? previous.id : null,
-//           nextPostId: next ? next.id : null,
-//         },
-//       })
-//     )
-//   )
-
-// /**
-//  * This function creates all the individual blog pages in this site
-//  */
-// async function createBlogPostArchive({ posts, gatsbyUtilities }) {
-//   const graphqlResult = await gatsbyUtilities.graphql(/* GraphQL */ `
-//     {
-//       wp {
-//         readingSettings {
-//           postsPerPage
-//         }
-//       }
-//     }
-//   `)
-
-//   const { postsPerPage } = graphqlResult.data.wp.readingSettings
-
-//   const postsChunkedIntoArchivePages = chunk(posts, postsPerPage)
-//   const totalPages = postsChunkedIntoArchivePages.length
-
-//   return Promise.all(
-//     postsChunkedIntoArchivePages.map(async (_posts, index) => {
-//       const pageNumber = index + 1
-
-//       const getPagePath = page => {
-//         if (page > 0 && page <= totalPages) {
-//           // Since our homepage is our blog page
-//           // we want the first page to be "/" and any additional pages
-//           // to be numbered.
-//           // "/blog/2" for example
-//           return page === 1 ? `/` : `/blog/${page}`
-//         }
-
-//         return null
-//       }
-
-//       // createPage is an action passed to createPages
-//       // See https://www.gatsbyjs.com/docs/actions#createPage for more info
-//       await gatsbyUtilities.actions.createPage({
-//         path: getPagePath(pageNumber),
-
-//         // use the blog post archive template as the page component
-//         component: path.resolve(`./src/templates/blog-post-archive.js`),
-
-//         // `context` is available in the template as a prop and
-//         // as a variable in GraphQL.
-//         context: {
-//           // the index of our loop is the offset of which posts we want to display
-//           // so for page 1, 0 * 10 = 0 offset, for page 2, 1 * 10 = 10 posts offset,
-//           // etc
-//           offset: index * postsPerPage,
-
-//           // We need to tell the template how many posts to display too
-//           postsPerPage,
-
-//           nextPagePath: getPagePath(pageNumber + 1),
-//           previousPagePath: getPagePath(pageNumber - 1),
-//         },
-//       })
-//     })
-//   )
-// }
-
-// /**
-//  * This function queries Gatsby's GraphQL server and asks for
-//  * All WordPress blog posts. If there are any GraphQL error it throws an error
-//  * Otherwise it will return the posts 🙌
-//  *
-//  * We're passing in the utilities we got from createPages.
-//  * So see https://www.gatsbyjs.com/docs/node-apis/#createPages for more info!
-//  */
-// async function getPosts({ graphql, reporter }) {
-//   const graphqlResult = await graphql(/* GraphQL */ `
-//     query WpPosts {
-//       # Query all WordPress blog posts sorted by date
-//       allWpPost(sort: { fields: [date], order: DESC }) {
-//         edges {
-//           previous {
-//             id
-//           }
-
-//           # note: this is a GraphQL alias. It renames "node" to "post" for this query
-//           # We're doing this because this "node" is a post! It makes our code more readable further down the line.
-//           post: node {
-//             id
-//             uri
-//           }
-
-//           next {
-//             id
-//           }
-//         }
-//       }
-//     }
-//   `)
-
-//   if (graphqlResult.errors) {
-//     reporter.panicOnBuild(
-//       `There was an error loading your blog posts`,
-//       graphqlResult.errors
-//     )
-//     return
-//   }
-
-//   return graphqlResult.data.allWpPost.edges
-// }
-
-const path = require(`path`)
-const { assignIds } = require('@webdeveducation/wp-block-tools');
-
-// const fs = require('fs');
-const fs = require('fs');
-const fse = require("fs-extra");
-
-exports.onPostBuild = () => {
-  fse.copySync("./src/common", "./static/common");
-};
-
-// exports.onPostBootstrap = () => {
-//   fs.copyFile(
-//     `${__dirname}/src/common/css/default.css`,
-//     `${__dirname}/static/css/wpstyle.css`,
-//     err => {
-//       if (err) throw err;
-//       console.log('CSS file was copied successfully!');
-//     }
-//   );
-// };
-
-
-
-exports.createPages = async ({ actions, graphql }) => {
-  const pageTemplate = path.resolve("./src/templates/page.js");
-  const {createPage} = actions
-  const {data} = await graphql(`
-  query AllPagesQuery {  
-    allWpPressrelease {
-          nodes{
-            id        
-          blocks
-          databaseId
-          uri
-          title
-          content
+const pageQuery = `
+{
+  allWpPage {
+    edges {
+      node {
+        id
+        slug
+        uri
+        locale {
+          id
+          locale
         }
+        localizedWpmlUrl
       }
     }
-  `);
-  // try{
-  //     fs.writeFileSync("./public/themeStylesheet.css",data.wp.themeStylesheet)        
-  // }catch(e){}
-
- 
-  
-
-  for(let i = 0; i < data.allWpPressrelease.nodes.length; i++){
-      const page = data.allWpPressrelease.nodes[i];
-      // let blocks = page.blocks;
-      // blocks = assignIds(blocks);
-      createPage({
-          path:page.uri,
-          component:pageTemplate,
-          context:{
-            id: page.id,
-            // content:page.content,
-            // blocks
-
-          }
-      })
   }
-
-
 }
+`
+
+const postsQuery = `
+ {
+  allWpPressrelease {
+    edges {
+      node {
+        id
+        title
+        slug
+        uri
+        locale {
+          id
+          locale
+        }
+        localizedWpmlUrl
+      }
+    }
+  }
+} `
+
+const perspectiveQuery = `
+ {
+  allWpPerspective {
+    edges {
+      node {
+        id
+        title
+        slug
+        uri
+        locale {
+          id
+          locale
+        }
+        localizedWpmlUrl
+      }
+    }
+  }
+}`
+
+const inthenewsQuery = `
+ {
+  allWpInthenews {
+    edges {
+      node {
+        id
+        title
+        slug
+        uri
+        locale {
+          id
+          locale
+        }
+        localizedWpmlUrl
+      }
+    }
+  }
+}`
+
+const ourPeopleQuery = `
+ {
+  allWpOurpeople {
+    edges {
+      node {
+        title
+        slug
+        uri
+        id
+        locale {
+          id
+          locale
+        }
+        localizedWpmlUrl
+      }
+    }
+  }
+}`
+const ourSolutionsQuery = `
+ {
+  allWpSolution {
+    edges {
+      node {
+        title
+        slug
+        uri
+        id
+        locale {
+          id
+          locale
+        }
+        localizedWpmlUrl
+      }
+    }
+  }
+} `
+const partnerslistQuery = `
+ {
+  allWpPartner {
+    edges {
+      node {
+        title
+        slug
+        uri
+        id
+        locale {
+          id
+          locale
+        }
+        localizedWpmlUrl
+      }
+    }
+  }
+}`
+
+
+exports.createPages = ({ actions, graphql, reporter }) => {
+    // const { createPage ,createRedirect} = boundActionCreators;
+    // actions.createRedirect({ fromPath: '/', toPath: '/en/', redirectInBrowser: true, isPermanent: true })
+    // actions.createRedirect({ fromPath: '/home/', toPath: '/en/', redirectInBrowser: true, isPermanent: true })
+
+    return new Promise((resolve, reject) => {
+
+        // Pages
+        graphql(pageQuery)
+            .then(result => {
+                if (result.errors) {
+                    console.log(result.errors);
+                    reject(result.errors);
+                }
+
+                let pageTemplate;
+                //  const pageTemplate = path.resolve("./src/templates/page.js");
+                //  const pageTemplate = path.resolve("./src/templates/news-listing.js");
+                //  console.log('console.log(result)', JSON.stringify(result))
+                _.each(result.data.allWpPage.edges, edge => {
+                    // console.log('console.log(result)node.slug', JSON.stringify(node))
+
+                    // if (edge.node.slug != "home" && edge.node.locale.id === "en_US") {
+                    //     actions.createRedirect({ fromPath: '/' + edge.node.slug, toPath: '/en/' + edge.node.slug + "/", redirectInBrowser: true, isPermanent: true })
+                    //     actions.createRedirect({ fromPath: '/' + edge.node.slug + "/", toPath: '/en/' + edge.node.slug + "/", redirectInBrowser: true, isPermanent: true })
+                    // }
+
+                    // if (edge.node.slug != "home" && edge.node.locale.id === "tr_TR") {
+                    //     actions.createRedirect({ fromPath: '/' + edge.node.slug, toPath: '/tr/' + edge.node.slug + "/", redirectInBrowser: true, isPermanent: true })
+                    //     actions.createRedirect({ fromPath: '/' + edge.node.slug + "/", toPath: '/tr/' + edge.node.slug + "/", redirectInBrowser: true, isPermanent: true })
+                    // }
+                    
+                    var slug = "/"+langSlugMapping[edge.node.locale.id]+edge.node.slug+"/";
+                    pageTemplate = path.resolve("./src/templates/page.js");
+                    if (edge.node.slug === "home") {
+                        //  slug = edge.node.locale.id==="en_US"?'/en/':'/ar/';
+                        slug = langSlugMapping[edge.node.locale.id];
+                        pageTemplate = path.resolve("./src/templates/home.js");
+                    }
+                    else if (edge.node.slug === "about-us") {
+                        pageTemplate = path.resolve("./src/templates/about-us.js");
+                    }
+                    else if (edge.node.slug === "what-we-do") {
+                        pageTemplate = path.resolve("./src/templates/what-we-do.js");
+                    }
+                    else if (edge.node.slug === "investments") {
+                        pageTemplate = path.resolve("./src/templates/investments.js");
+                    }
+                    else if (edge.node.slug === "our-solutions") {
+                        pageTemplate = path.resolve("./src/templates/our-solutions.js");
+                    }
+                    else if (edge.node.slug === "our-partners") {
+                        pageTemplate = path.resolve("./src/templates/our-partners.js");
+                    }
+                    else if (edge.node.slug === "news") {
+                        pageTemplate = path.resolve("./src/templates/news-listing.js");
+                    } else if (edge.node.slug === "insights") {
+                        pageTemplate = path.resolve("./src/templates/insights-listing.js");
+                    } else if (edge.node.slug === "in-the-news") {
+                        pageTemplate = path.resolve("./src/templates/inthenews-listing.js");
+                    }
+                    else if (edge.node.slug === "our-people") {
+                        pageTemplate = path.resolve("./src/templates/ourpeople-listing.js");
+                    }
+                    else if (edge.node.slug === "contact-us") {
+                        pageTemplate = path.resolve("./src/templates/contact-us.js");
+                    }
+                    else if (edge.node.slug === "become-a-partner") {
+                        pageTemplate = path.resolve("./src/templates/become-a-partner.js");
+                    }
+                    else {
+                        pageTemplate = path.resolve("./src/templates/page.js");
+                    }
+                    actions.createPage({
+                        path: `${slug}`,
+                        component: slash(pageTemplate),
+                        //  context: node
+                        ownerNodeId: edge.node.id,
+                        context: {
+                            id: edge.node.id,
+                            lang: langMapping[edge.node.locale.id],
+                            langCode: edge.node.locale.id
+
+                        },
+                    });
+
+                });
+                resolve();
+
+                // languages.forEach(lang => {
+                //   actions.createPage({
+                //     path: lang.path,
+                //     component: slash( pageTemplate),
+                //     context: {
+                //       lang: lang.code,
+                //     },
+                //   })
+                // })
+
+
+            })
+            .then(() => {
+                graphql(postsQuery)
+                    .then(result => {
+                        if (result.errors) {
+                            console.log(result.errors);
+                            reject(result.errors);
+                        }
+                        const postTemplate = path.resolve("./src/templates/customPost.js");
+                        _.each(result.data.allWpPressrelease.edges, edge => {
+                            // if (edge.node.locale.id === "en_US") {
+                            //     actions.createRedirect({ fromPath: '/news/' + edge.node.slug, toPath: edge.node.localizedWpmlUrl, redirectInBrowser: true, isPermanent: true })
+                            //     actions.createRedirect({ fromPath: '/news/' + edge.node.slug + "/", toPath: edge.node.localizedWpmlUrl, redirectInBrowser: true, isPermanent: true })
+                            // }
+
+                            actions.createPage({
+                                path: `/${langSlugMapping[edge.node.locale.id]}news/${edge.node.slug}/`,
+                                component: slash(postTemplate),
+                                ownerNodeId: edge.node.id,
+                                context: {
+                                    id: edge.node.id,
+                                    lang: edge.node.locale.id
+
+                                },
+                            });
+                        });
+                        resolve();
+                    });
+            })
+            .then(() => {
+                graphql(perspectiveQuery)
+                    .then(result => {
+                        if (result.errors) {
+                            console.log(result.errors);
+                            reject(result.errors);
+                        }
+                        const postTemplate = path.resolve("./src/templates/perspective.js");
+                        _.each(result.data.allWpPerspective.edges, edge => {
+                            // if (edge.node.locale.id === "en_US") {
+                            //     actions.createRedirect({ fromPath: '/insights/' + edge.node.slug, toPath: edge.node.localizedWpmlUrl, redirectInBrowser: true, isPermanent: true })
+                            //     actions.createRedirect({ fromPath: '/insights/' + edge.node.slug + "/", toPath: edge.node.localizedWpmlUrl, redirectInBrowser: true, isPermanent: true })
+                            // }
+                            actions.createPage({
+                                path: `/${langSlugMapping[edge.node.locale.id]}insights/${edge.node.slug}/`,
+                                component: slash(postTemplate),
+                                ownerNodeId: edge.node.id,
+                                context: {
+                                    id: edge.node.id,
+                                    lang: edge.node.locale.id
+                                },
+                            });
+                        });
+                        resolve();
+                    });
+            })
+            .then(() => {
+                graphql(inthenewsQuery)
+                    .then(result => {
+                        if (result.errors) {
+                            console.log(result.errors);
+                            reject(result.errors);
+                        }
+                        const postTemplate = path.resolve("./src/templates/inthenews.js");
+                        _.each(result.data.allWpInthenews.edges, edge => {
+                            // if (edge.node.locale.id === "en_US") {
+                            //     actions.createRedirect({ fromPath: '/in-the-news/' + edge.node.slug, toPath: edge.node.localizedWpmlUrl, redirectInBrowser: true, isPermanent: true })
+                            //     actions.createRedirect({ fromPath: '/in-the-news/' + edge.node.slug + "/", toPath: edge.node.localizedWpmlUrl, redirectInBrowser: true, isPermanent: true })
+                            // }
+                            actions.createPage({
+                                path: `/${langSlugMapping[edge.node.locale.id]}in-the-news/${edge.node.slug}/`,
+                                component: slash(postTemplate),
+                                ownerNodeId: edge.node.id,
+                                context: {
+                                    id: edge.node.id,
+                                    lang: edge.node.locale.id
+                                },
+                            });
+                        });
+                        resolve();
+                    });
+            })
+            .then(() => {
+                graphql(ourPeopleQuery)
+                    .then(result => {
+                        if (result.errors) {
+                            console.log(result.errors);
+                            reject(result.errors);
+                        }
+                        const ourPeople = path.resolve("./src/templates/ourPeople.js");
+                        _.each(result.data.allWpOurpeople.edges, edge => {
+                            // if (edge.node.locale.id === "en_US") {
+                            //     actions.createRedirect({ fromPath: '/our-people/' + edge.node.slug, toPath: edge.node.localizedWpmlUrl, redirectInBrowser: true, isPermanent: true })
+                            //     actions.createRedirect({ fromPath: '/our-people/' + edge.node.slug + "/", toPath: edge.node.localizedWpmlUrl, redirectInBrowser: true, isPermanent: true })
+                            // }
+                            actions.createPage({
+                                path: `/${langSlugMapping[edge.node.locale.id]}our-people/${edge.node.slug}/`,
+                                component: slash(ourPeople),
+                                // context: edge.node
+                                ownerNodeId: edge.node.id,
+                                context: {
+                                    id: edge.node.id,
+                                    lang: edge.node.locale.id
+                                },
+                            });
+                        });
+                        resolve();
+                    });
+            })
+            .then(() => {
+                graphql(ourSolutionsQuery)
+                    .then(result => {
+
+                        // console.log('result.data.allWpSolution', result.data.allWpSolution);
+                        if (result.errors) {
+                            console.log(result.errors);
+                            reject(result.errors);
+                        }
+                        const solutionDetail = path.resolve("./src/templates/solutionDetail.js");
+                        _.each(result.data.allWpSolution.edges, edge => {
+                            // if (edge.node.locale.id === "en_US") {
+                            //     actions.createRedirect({ fromPath: '/solutions/' + edge.node.slug, toPath: edge.node.localizedWpmlUrl, redirectInBrowser: true, isPermanent: true })
+                            //     actions.createRedirect({ fromPath: '/solutions/' + edge.node.slug + "/", toPath: edge.node.localizedWpmlUrl, redirectInBrowser: true, isPermanent: true })
+                            // }
+                            actions.createPage({
+                                path: `/${langSlugMapping[edge.node.locale.id]}solutions/${edge.node.slug}/`,
+                                //path: `/${langSlugMapping[edge.node.locale.id]}solutions/${edge.node.title.replace(/\s+/g, '-')}/`,
+                                component: slash(solutionDetail),
+                                // context: edge.node
+                                ownerNodeId: edge.node.id,
+                                context: {
+                                    id: edge.node.id,
+                                    lang: langMapping[edge.node.locale.id],
+                                    langCode: edge.node.locale.id
+                                },
+                            });
+                        });
+                        resolve();
+                    });
+            })
+            .then(() => {
+                graphql(partnerslistQuery)
+                    .then(result => {
+
+                        // console.log('result.data.allWpSolution', result.data.allWpPartner);
+                        if (result.errors) {
+                            console.log(result.errors);
+                            reject(result.errors);
+                        }
+                        const partnerDetail = path.resolve("./src/templates/partnerDetails.js");
+                        _.each(result.data.allWpPartner.edges, edge => {
+                            // if (edge.node.locale.id === "en_US") {
+                            //     actions.createRedirect({ fromPath: '/partners/' + edge.node.slug, toPath: edge.node.localizedWpmlUrl, redirectInBrowser: true, isPermanent: true })
+                            //     actions.createRedirect({ fromPath: '/partners/' + edge.node.slug + "/", toPath: edge.node.localizedWpmlUrl, redirectInBrowser: true, isPermanent: true })
+                            // }
+                            actions.createPage({
+                                path: `/${langSlugMapping[edge.node.locale.id]}partners/${edge.node.slug}/`,
+                                component: slash(partnerDetail),
+                                // context: edge.node
+                                ownerNodeId: edge.node.id,
+                                context: {
+                                    id: edge.node.id,
+                                    lang: langMapping[edge.node.locale.id],
+                                    langCode: edge.node.locale.id
+                                },
+                            });
+                        });
+                        resolve();
+                    });
+            });
+
+        //         // ==== END POSTS ====
+    });
+};
+
+// const postsJSONQuery = `
+//  {
+//   allWpPressrelease {
+//     edges {
+//       node {
+//         id
+//         title
+//         slug
+//         uri
+//         locale {
+//           id
+//           locale
+//         }
+//         localizedWpmlUrl
+//         featuredImage {
+//           node {
+//             altText
+//             sourceUrl
+//           }
+//         }
+//         date(formatString: "MMMM D, Y")
+//         press_release_acf {
+//           featured
+//           location
+//           publishedDate
+//           shortTitle
+//           summary
+//         }
+//       }
+//     }
+//   }
+// }
+ 
+// `
+
+// const insightsJSONQuery = `
+//  {
+//   allWpPerspective {
+//     edges {
+//       node {
+//         id
+//         title
+//         slug
+//         uri
+//         locale {
+//           id
+//           locale
+//         }
+//         localizedWpmlUrl
+//         featuredImage {
+//           node {
+//             altText
+//             sourceUrl
+//           }
+//         }
+//         date(formatString: "MMMM D, Y")
+//         press_release_acf {
+//           featured
+//           location
+//           publishedDate
+//           shortTitle
+//           summary
+//         }
+//       }
+//     }
+//   }
+// }
+ 
+// `
+
+// const inthenewsJSONQuery = `
+//  {
+//   allWpInthenews {
+//     edges {
+//       node {
+//         id
+//         title
+//         slug
+//         uri
+//         locale {
+//           id
+//           locale
+//         }
+//         localizedWpmlUrl
+//         featuredImage {
+//           node {
+//             altText
+//             sourceUrl
+//           }
+//         }
+//         date(formatString: "MMMM D, Y")
+//         press_release_acf {
+//           featured
+//           location
+//           publishedDate
+//           shortTitle
+//           summary
+//         }
+//       }
+//     }
+//   }
+// }
+ 
+// `
+
+// exports.onPostBuild = async ({ graphql }) => {
+//     // Run the GraphQL query (from example above).
+//     await graphql(postsJSONQuery).then(async (result) => {
+
+//         const postsPath = "./public/json"
+//         const posts = result.data.allWpPressrelease.edges.map(({ node }) => node)
+//         if (!fs.existsSync(postsPath)) fs.mkdirSync(postsPath)
+
+//         fs.writeFileSync(`${postsPath}/news.json`, JSON.stringify(posts))
+
+//         await graphql(insightsJSONQuery).then(async (result) => {
+
+//             const postsPath = "./public/json"
+//             const posts = result.data.allWpPerspective.edges.map(({ node }) => node)
+//             if (!fs.existsSync(postsPath)) fs.mkdirSync(postsPath)
+
+//             fs.writeFileSync(`${postsPath}/insights.json`, JSON.stringify(posts))
+//             await graphql(inthenewsJSONQuery).then(async (result) => {
+
+//                 const postsPath = "./public/json"
+//                 const posts = result.data.allWpInthenews.edges.map(({ node }) => node)
+//                 if (!fs.existsSync(postsPath)) fs.mkdirSync(postsPath)
+
+//                 fs.writeFileSync(`${postsPath}/inthenews.json`, JSON.stringify(posts))
+//             })
+//         })
+//     })
+// }
