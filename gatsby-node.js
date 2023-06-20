@@ -199,12 +199,12 @@ exports.createPages = async ({ actions, graphql }) => {
     }
     allWpPressrelease {
           nodes{
-            id
+            id        
+          blocks
           databaseId
           uri
           title
           content
-          blocks
         }
       }
     }
@@ -232,7 +232,7 @@ exports.createPages = async ({ actions, graphql }) => {
   for(let i = 0; i < data.allWpPressrelease.nodes.length; i++){
       const page = data.allWpPressrelease.nodes[i];
       let blocks = page.blocks;
-      blocks = assignIds(blocks)
+      blocks = assignIds(blocks);
       createPage({
           path:page.uri,
           component:pageTemplate,

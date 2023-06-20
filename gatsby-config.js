@@ -14,6 +14,7 @@ module.exports = {
    * If you need any more you can search here: https://www.gatsbyjs.com/plugins/
    */
   plugins: [
+    'gatsby-plugin-uninline-styles',
     {
             /**
              * First up is the WordPress source plugin that connects Gatsby
@@ -45,7 +46,7 @@ module.exports = {
                 html: {
                     useGatsbyImage: true,
                     generateWebpImages: true,
-                    placeholderType:'none',
+                    placeholderType:'blurred',
                     createStaticFiles: true,
 
                 },
@@ -150,5 +151,7 @@ module.exports = {
      * To learn more, visit: https://gatsby.dev/offline
      */
     // `gatsby-plugin-offline`,
+    `gatsby-plugin-perf-budgets`,
+    `gatsby-plugin-webpack-bundle-analyser-v2`
   ],
 }

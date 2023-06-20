@@ -2,6 +2,7 @@ import React from 'react'
 import { graphql } from "gatsby";
 import { BlockRendererProvider,  BlockRenderer, getStyles, getClasses} from '@webdeveducation/wp-block-tools'
 import Layout from '../components/layout';
+import parse from "html-react-parser"
 
 // import Menu from "../components/Menu"
 const Page = (props) => {
@@ -24,7 +25,11 @@ const Page = (props) => {
       <div className=''>
         <div className='row justify-content-between'>      
         <div className='col-md-8'>
-        {/* <div dangerouslySetInnerHTML={{__html:currentPage.content}} /> */}
+          <p>_______________________</p>
+        {/* <div dangerouslySetInnerHTML={{__html:currentPage.content}} />
+
+
+        <div>{parse(currentPage.content)}</div> */}
 
         {/* <BlockRendererProvider allBlocks={currentPage.blocks}/>  */}
         {/* <BlockRendererProvider allBlocks={props.pageContext.blocks}/> */}
@@ -36,9 +41,7 @@ const Page = (props) => {
         switch(block.name){
           case "core/image":{
             return (<div key={block.id} style={getStyles(block)} className={getClasses(block)}>    
-                <div  style={{maxWidth:block.attributes.width}}  dangerouslySetInnerHTML={{__html:block.originalContent}} />
-              {console.log("innerblocks", block)}
-              <img src={block.attributes.url} />
+                <div  style={{maxWidth:block.attributes.width}}  dangerouslySetInnerHTML={{__html:block.originalContent}} />        
             </div>)
           }
         }
