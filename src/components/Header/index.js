@@ -21,7 +21,7 @@ export default function Header() {
 
                   <div class="col-auto">
 
-<a href="/en/" class="logo"><img src={Aljlogo} alt="Abdul Latif Jameel Logo" /></a> 
+{/* <a href="/en/" class="logo"><img src={Aljlogo} alt="Abdul Latif Jameel Logo" /></a>  */}
 
 
           
